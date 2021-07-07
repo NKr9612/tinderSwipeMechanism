@@ -66,28 +66,28 @@ body {
 
 /* listing card starts by last */
 .four {
-  background-image: url('/imgs/1cardGirl.png');
+  background-image: url('1cardGirl.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .three {
-  background-image: url('/imgs/2cardGirl.png');
+  background-image: url('2cardGirl.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .two {
-  background-image: url('/imgs/3cardGirl.png');
+  background-image: url('3cardGirl.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
 .one {
-  background-image: url('/imgs/4cardGirl.png');
+  background-image: url('4cardGirl.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -105,7 +105,7 @@ body {
 .afterChoice__right{
     width: 285px;
     height: 460px;
-    background-image: url('/imgs/swipedRight.jpg');
+    background-image: url('swipedRight.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -116,7 +116,7 @@ body {
   .afterChoice__left{
     width: 285px;
     height: 460px;
-    background-image: url('/imgs/swipedLeft.jpg');
+    background-image: url('swipedLeft.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -127,7 +127,7 @@ body {
   .afterChoice__up{
     width: 285px;
     height: 460px;
-    background-image: url('/imgs/swipedUp.png');
+    background-image: url('swipedUp.png');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
