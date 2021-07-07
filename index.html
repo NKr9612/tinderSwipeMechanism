@@ -4,18 +4,41 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TinderMechanism</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="board">
-        <div class="card"></div>
-        <div class="card"></div>
-      </div>
+    <img src="/imgs/adrLogo.png" alt="" class="adrLogo">
+    <img src="/imgs/phoneBackground.png" alt="" class="phoneContainer">
+    <main id="board">
+        <div class="card one">
+            <h3 class="card__title">Jessie</h3>
+        </div>
+        <div class="card two">
+            <h3 class="card__title">Sophia</h3>
+        </div>
+        <div class="card three">
+            <h3 class="card__title">Isabella</h3>
+        </div>
+        <div class="card four">
+            <h3 class="card__title">Mia</h3>
+        </div>
+    </main>
+    <div class="afterChoice">
+        <div class="afterChoice__right">
+         <h3 class="afterChoice__summary"></h3>
+        </div>
+        <div class="afterChoice__left">
+            <h3 class="afterChoice__summary"></h3>
+        </div>
+        <div class="afterChoice__up">
+            <h3 class="afterChoice__summary"></h3>
+        </div>
+    </div>
 
-      <div class="swipe">Swipe left or right</div>
+      <h2 class="swipe">Swipe left or right</h1>
 
-      <script src="https://hammerjs.github.io/dist/hammer.js"></script>
+      <script src="https://cdn.adrino.cloud/Biblioteki/HammerJS/hammer.js"></script>
       <script src="script.js"></script>
 </body>
 </html>

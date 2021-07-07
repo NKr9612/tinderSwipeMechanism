@@ -1,30 +1,158 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Didact+Gothic&display=swap');
+
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Didact Gothic', sans-serif;
 }
+
+body {
+  overflow: hidden;
+}
+
+.adrLogo {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30%;
+  height: auto;
+  z-index: 2;
+}
+
+.phoneContainer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 640px;
+  z-index: 1;
+}
+
 #board {
-    width: 100vw;
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    background-color: rgb(245,247,250);
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #FFFFFF
+}
+
+.card,
+.afterChoice {
+  width: 285px;
+  height: 460px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 1%;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transform: translateX(-50%) translateY(-50%);
+  background-color: pink;
+  z-index: 1;
+}
+
+.card{
+  /* display: none; */
+  z-index: 2;
+}
+
+.afterChoice {
+  background-color: white;
+  display: block;
+}
+
+/* listing card starts by last */
+.four {
+  background-image: url('/imgs/1cardGirl.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.three {
+  background-image: url('/imgs/2cardGirl.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.two {
+  background-image: url('/imgs/3cardGirl.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.one {
+  background-image: url('/imgs/4cardGirl.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.card__title {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 25px;
+  color: white;
+}
+
+.afterChoice__right{
+    width: 285px;
+    height: 460px;
+    background-image: url('/imgs/swipedRight.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    display: none;
   }
-  
-  .card {
+
+  .afterChoice__left{
+    width: 285px;
+    height: 460px;
+    background-image: url('/imgs/swipedLeft.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    display: none;
+  }
+
+  .afterChoice__up{
+    width: 285px;
+    height: 460px;
+    background-image: url('/imgs/swipedUp.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+    display: none;
+  }
+
+  .afterChoice__summary{
+    color: rgb(209, 22, 15);
+    font-size: 20px;
+    text-align: center;
+    padding-top: 50px;
+  }
+/* .card__img{
     width: 320px;
-    height: 520px;
+    height: 600px;
     position: absolute;
     top: 50%;
     left: 50%;
-    border-radius: 1%;
-    box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.1);
-    background-color: white;
     transform: translateX(-50%) translateY(-50%);
-  }
-  .swipe{
-    position: absolute;
-    bottom: 20px;
-   left: 20%;
-   font-size: 30px;
-  }
+  } */
+.swipe {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 20px;
+}

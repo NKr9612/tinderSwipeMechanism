@@ -3,10 +3,15 @@ class Carousel {
     constructor(element) {
 
         this.board = element
-
+        this.leftCounter = 0
+        this.rightCounter = 0
+        this.upCounter = 0
+        this.counter = 0
+        this.h1 = document.querySelector('.swipe')
+        this.summaryChoices = document.querySelectorAll('.afterChoice__summary')
         // add first two cards programmatically
-        this.push()
-        this.push()
+        // this.push()
+        // this.push()
 
         // handle gestures
         this.handle()
@@ -15,6 +20,7 @@ class Carousel {
 
     handle() {
 
+        
         // list all cards
         this.cards = this.board.querySelectorAll('.card')
 
@@ -50,8 +56,31 @@ class Carousel {
                 this.onPan(e)
             })
 
+            
         }
 
+    }
+
+    handleCSS(){
+       
+        if(this.rightCounter > this.leftCounter && this.rightCounter > this.upCounter){
+            console.log('dałęś więcej w prawo')
+            document.querySelector('.afterChoice__right').style.display = 'block';
+        }else if(this.leftCounter > this.rightCounter && this.leftCounter > this.upCounter){
+            console.log('dałęś więcej w lewo')
+
+            document.querySelector('.afterChoice__left').style.display = 'block';
+        }else if(this.upCounter > this.leftCounter || this.upCounter > this.rightCounter ){
+            console.log('Dałeś więcej w górę')
+            document.querySelector('.afterChoice__up').style.display = 'block';
+        }else{
+            console.log('Dałeś po równo')
+            document.querySelector('.afterChoice__right').style.display = 'block';
+        }
+
+        this.summaryChoices.forEach(i => {
+            i.innerHTML = `Dałeś ${this.rightCounter} razy w prawo, ${this.leftCounter} w lewo i ${this.upCounter} w górę`
+        })
     }
 
     onTap(e) {
@@ -107,6 +136,8 @@ class Carousel {
         let posX = e.deltaX + this.startPosX
         let posY = e.deltaY + this.startPosY
 
+        // console.log(`POSX: ${posX} && POSY${posY} && e.deltaX: ${e.deltaX} && e.deltaY: ${e.deltaY} && this.startPOSX: ${this.startPosX} && this.startPOSY:${this.start}`)
+
         // get ratio between swiped pixels and the axes
         let propX = e.deltaX / this.board.clientWidth
         let propY = e.deltaY / this.board.clientHeight
@@ -130,6 +161,7 @@ class Carousel {
 
         if (e.isFinal) {
 
+            
             this.isPanning = false
 
             let successful = false
@@ -140,44 +172,43 @@ class Carousel {
 
             // check threshold and movement direction
             if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
-
+                
                 successful = true
                 // get right border position
                 posX = this.board.clientWidth
-
             } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
-
                 successful = true
                 // get left border position
                 posX = -(this.board.clientWidth + this.topCard.clientWidth)
-
             } else if (propY < -0.25 && e.direction == Hammer.DIRECTION_UP) {
-
                 successful = true
                 // get top border position
                 posY = -(this.board.clientHeight + this.topCard.clientHeight)
-
             }
 
             if (successful) {
-
                 // throw card in the chosen direction
                 this.topCard.style.transform =
                     'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
-
                 // wait transition end
                 setTimeout(() => {
-                    // remove swiped card
                     this.board.removeChild(this.topCard)
                     // add new card
-                    this.push()
-                    // handle gestures on new top card
+                    // this.push()
+                    if (propX > 0.25 && e.direction == Hammer.DIRECTION_RIGHT) {
+                        this.rightCounter ++;    
+                    } else if (propX < -0.25 && e.direction == Hammer.DIRECTION_LEFT) {
+                        this.leftCounter ++;
+                    } else if (propY < -0.25 && e.direction == Hammer.DIRECTION_UP) {
+                        this.upCounter ++;
+                    }
+                    this.counter++
+                    console.log(this.counter, this.rightCounter, this.leftCounter, this.upCounter)
+                    this.counter>3? this.handleCSS(): 0;
                     this.handle()
                 }, 200)
 
             } else {
-
-                // reset cards position and size
                 this.topCard.style.transform =
                     'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
                 if (this.nextCard) this.nextCard.style.transform =
@@ -189,18 +220,19 @@ class Carousel {
 
     }
 
-    push() {
+    //class to generate more cards
+    // push() {
 
-        let card = document.createElement('div')
+    //     let card = document.createElement('div')
 
-        card.classList.add('card')
+    //     card.classList.add('card')
 
-        card.style.backgroundImage =
-            "url('https://picsum.photos/320/320/?random=" + Math.round(Math.random() * 1000000) + "')"
+    //     card.style.backgroundImage =
+    //         "url('https://picsum.photos/320/320/?random=" + Math.round(Math.random() * 1000000) + "')"
 
-        this.board.insertBefore(card, this.board.firstChild)
+    //     this.board.insertBefore(card, this.board.firstChild)
 
-    }
+    // }
 
 }
 
@@ -208,29 +240,3 @@ let board = document.querySelector('#board')
 
 let carousel = new Carousel(board)
 
-// const hammertime = new Hammer(document.querySelector('#board'));
-
-// hammertime.on('pan', (evt)=>{
-//     // console.log(evt)
-//     if(evt.additionalEvent === 'panright' && evt.distance>50){
-//         console.log('w prawo za pomocą additionalEvent')
-//     }else if(evt.additionalEvent === 'panleft' && evt.distance>50){
-//         console.log('w lewo za pomocą additionalEvent' )
-//     }else if(evt.additionalEvent === 'panup' && evt.distance>50){
-//         console.log('w górę za pomocą additionalEvent')
-//     }else if(evt.additionalEvent === 'pandown' && evt.distance>50){
-//         console.log('w dół za pomocą additionalEvent')
-//     }
-
-//     if(evt.direction === 4 && evt.distance>50){
-//         console.log('w prawo za pomocą direction')
-//     }else if(evt.direction === 2 && evt.distance>50){
-//         console.log('w lewo za pomocą direction')
-//     }else if(evt.direction === 8 && evt.distance>50){
-//         console.log('w górę za pomocą direction')
-//     }else if(evt.direction === 16 && evt.distance>50){
-//         console.log('w dół za pomocą direction')
-//     }
-
-//     console.log('działaaa')
-// })
